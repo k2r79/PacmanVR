@@ -4,6 +4,7 @@ using System.Collections;
 public class PacmanController : MonoBehaviour {
 
 	public float speed = 0.1f;
+	public int lifes = 3;
 
 	private GameObject pacman;
 	private CharacterController pacmanCharacter;
@@ -23,5 +24,11 @@ public class PacmanController : MonoBehaviour {
 
 		Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
 		pacmanCharacter.Move (moveDirection * speed);
+	}
+
+	void OnControllerColliderHit(ControllerColliderHit hit) {
+		if (hit.collider.name == "Ghost") {
+
+		}
 	}
 }
