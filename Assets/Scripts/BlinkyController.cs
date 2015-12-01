@@ -3,19 +3,11 @@ using System.Collections;
 
 public class BlinkyController : GhostController {
 
-	// Use this for initialization
-	void Start () {
-		pacman = GameObject.Find("Pacman");
-		navMeshAgent = GetComponent<NavMeshAgent> ();
-		
-		transform.position = startingPosition;
+	protected override void doOnStart() {
+
 	}
 	
-	// Update is called once per frame
-	void Update () {
-		Debug.Log (navMeshAgent.isOnNavMesh);
+	protected override void doOnUpdate () {
 		target = pacman.transform.position;
-
-		navMeshAgent.SetDestination (target);
 	}
 }

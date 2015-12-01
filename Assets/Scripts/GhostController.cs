@@ -1,7 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class GhostController : MonoBehaviour {
+public abstract class GhostController : MonoBehaviour {
 
 	public Vector3 startingPosition;
 	public Vector3 target;
@@ -11,14 +11,21 @@ public class GhostController : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
+		pacman = GameObject.Find("Pacman");
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 
 		transform.position = startingPosition;
-		navMeshAgent.SetDestination (target);
+
+		doOnStart ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
-		
+		navMeshAgent.SetDestination (target);
+
+		doOnUpdate ();
 	}
+
+	abstract protected void doOnStart();
+	abstract protected void doOnUpdate();
 }
