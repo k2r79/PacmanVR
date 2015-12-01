@@ -5,8 +5,9 @@ public class GhostController : MonoBehaviour {
 
 	public Vector3 startingPosition;
 	public Vector3 target;
-
+	
 	protected NavMeshAgent navMeshAgent;
+	protected GameObject pacman;
 
 	// Use this for initialization
 	void Start () {
@@ -18,6 +19,6 @@ public class GhostController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-	
+		
 	}
 }
