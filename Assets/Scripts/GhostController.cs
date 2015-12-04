@@ -12,6 +12,7 @@ public abstract class GhostController : MonoBehaviour {
 	protected NavMeshAgent navMeshAgent;
 	protected GameObject pacman;
 	protected Vector3 nextPosition;
+	protected GameObject previousIntersection;
 
 	// Use this for initialization
 	void Start () {
@@ -39,6 +40,7 @@ public abstract class GhostController : MonoBehaviour {
 			IntersectionController intersection = collider.GetComponent<IntersectionController>();
 
 			nextPosition = ClosestIntersection(intersection).transform.position;
+			previousIntersection = collider.gameObject;
 		}
 	}
 
@@ -49,7 +51,7 @@ public abstract class GhostController : MonoBehaviour {
 		for (int intersectionIndex = 0; intersectionIndex < intersection.IntersectionList().Length; intersectionIndex++) {
 			GameObject childIntersection = intersection.IntersectionList()[intersectionIndex];
 
-			if (childIntersection != null) {
+			if (childIntersection != null && childIntersection != previousIntersection) {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset, target);
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
