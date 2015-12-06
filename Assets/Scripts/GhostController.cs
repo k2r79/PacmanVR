@@ -5,8 +5,9 @@ public abstract class GhostController : MonoBehaviour {
 
 	public Vector3 startingPosition;
 	public Vector3 target;
+	public Vector3 scatterCorner;
 	
-	private Vector3[] offsetVectors = new Vector3[] { new Vector3(0, 0, 1), new Vector3(0, -1, 0), new Vector3(0, 0, -1), new Vector3(0, 1, 0) };
+	private Vector3[] offsetVectors = new Vector3[] { new Vector3(1, 0, 0), new Vector3(0, 0, -1), new Vector3(-1, 0, 0), new Vector3(0, 0, 1) };
 	public float intersectionOffset = 1.5f;
 	
 	protected NavMeshAgent navMeshAgent;
@@ -48,11 +49,14 @@ public abstract class GhostController : MonoBehaviour {
 		float minDistance = float.MaxValue;
 		GameObject bestChildIntersection = null;
 
-		for (int intersectionIndex = 0; intersectionIndex < intersection.IntersectionList().Length; intersectionIndex++) {
-			GameObject childIntersection = intersection.IntersectionList()[intersectionIndex];
+		GameObject[] intersections = intersection.IntersectionList ();
+		System.Array.Reverse (intersections);
+		for (int intersectionIndex = 0; intersectionIndex < intersections.Length; intersectionIndex++) {
+			GameObject childIntersection = intersections[intersectionIndex];
 
 			if (childIntersection != null && childIntersection != previousIntersection) {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset, target);
+				Debug.Log (intersection.name + " - " + intersectionIndex + " => " + (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset));
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
 					bestChildIntersection = childIntersection;
