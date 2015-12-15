@@ -8,6 +8,10 @@ public class BlinkyController : GhostController {
 	}
 	
 	protected override void doOnUpdate () {
-		target = pacman.transform.position;
+		if (GameController.mode.Equals(GameController.GameMode.Chase)) {
+			target = pacman.transform.position;
+		} else {
+			target = scatterCorner;
+		}
 	}
 }

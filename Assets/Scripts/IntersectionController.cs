@@ -9,7 +9,7 @@ public class IntersectionController : MonoBehaviour {
 	public GameObject downIntersection;
 	public GameObject rightIntersection;
 
-	public GameObject[] IntersectionList() {
+	public GameObject[] IntersectionList() {;
 		return new GameObject[] { upIntersection, leftIntersection, downIntersection, rightIntersection };
 	}
 }

@@ -56,7 +56,6 @@ public abstract class GhostController : MonoBehaviour {
 
 			if (childIntersection != null && childIntersection != previousIntersection) {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset, target);
-				Debug.Log (intersection.name + " - " + intersectionIndex + " => " + (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset));
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
 					bestChildIntersection = childIntersection;
