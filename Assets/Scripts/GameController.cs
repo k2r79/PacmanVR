@@ -17,7 +17,6 @@ public class GameController : MonoBehaviour {
 	}
 
 	void Update () {
-		Debug.Log (scatterTime);
 		if (mode.Equals(GameMode.Scatter)) {
 			scatterTime += Time.deltaTime;
 
