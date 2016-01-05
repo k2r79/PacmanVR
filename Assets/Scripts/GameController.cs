@@ -5,12 +5,16 @@ public class GameController : MonoBehaviour {
 
 	public enum GameMode { Scatter, Chase };
 	public static GameMode mode;
+
+	public static int score;
 	
 	private float scatterTime;
 	private float chaseTime;
 	
 	void Start () {
 		mode = GameMode.Scatter;
+
+		score = 0;
 
 		scatterTime = 0.0f;
 		chaseTime = 0.0f;
