@@ -23,7 +23,6 @@ public class InkyController : GhostController {
 			Vector3 blinkyToPacman = pacman.transform.position - blinky.transform.position;
 
 			target = pacmanPositionWithOffset + blinkyToPacman;
-			Debug.Log (target);
 		} else {
 			target = scatterCorner;
 		}

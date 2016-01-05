@@ -6,6 +6,7 @@ public abstract class GhostController : MonoBehaviour {
 	public Vector3 startingPosition;
 	public Vector3 target;
 	public Vector3 scatterCorner;
+	public int scoreBeforeStart = 0;
 	
 	private Vector3[] offsetVectors = new Vector3[] { new Vector3(1, 0, 0), new Vector3(0, 0, -1), new Vector3(-1, 0, 0), new Vector3(0, 0, 1) };
 	public float intersectionOffset = 1.5f;
@@ -27,7 +28,9 @@ public abstract class GhostController : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		navMeshAgent.SetDestination (nextPosition);
+		if (GameController.score >= scoreBeforeStart) {
+			navMeshAgent.SetDestination (nextPosition);
+		}
 
 		doOnUpdate ();
 	}
