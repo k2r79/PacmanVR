@@ -1,9 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public abstract class GhostController : MonoBehaviour {
-
-	public Vector3 startingPosition;
+public abstract class GhostController : PacmanCharacterController {
+	
 	public Vector3 target;
 	public Vector3 scatterCorner;
 	public int scoreBeforeStart = 0;
@@ -21,7 +20,7 @@ public abstract class GhostController : MonoBehaviour {
 		pacman = GameObject.Find("Pacman");
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 
-		transform.position = startingPosition;
+		transform.position = startPosition;
 
 		doOnStart ();
 	}

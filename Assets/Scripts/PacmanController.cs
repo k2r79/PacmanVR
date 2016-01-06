@@ -1,16 +1,16 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class PacmanController : MonoBehaviour {
+public class PacmanController : PacmanCharacterController {
 
 	public float speed = 0.1f;
 	public int lifes = 3;
-	public Vector3 startPosition = new Vector3 (-10.4f, 1.149f, -5.911f);
 
 	private GameObject pacman;
 	private CharacterController pacmanCharacter;
 	private CardboardHead cardboardHead;
 	private UnityEngine.UI.Text lifeHUD;
+	private UnityEngine.UI.Text scoreHUD;
 
 	// Use this for initialization
 	void Start () {
@@ -18,8 +18,11 @@ public class PacmanController : MonoBehaviour {
 		pacmanCharacter = GetComponent<CharacterController> ();
 		cardboardHead = GetComponentInChildren<CardboardHead> ();
 		lifeHUD = GameObject.Find ("HUD Life").GetComponent<UnityEngine.UI.Text>();
+		scoreHUD = GameObject.Find ("HUD Score").GetComponent<UnityEngine.UI.Text>();
 
-		SetStartPosition ();
+		startPosition = new Vector3 (-10.4f, 1.149f, -5.911f);
+		transform.localPosition = startPosition;
+
 		UpdateHUD ();
 	}
 
@@ -30,6 +33,8 @@ public class PacmanController : MonoBehaviour {
 
 		Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
 		pacmanCharacter.Move (moveDirection * speed);
+
+		UpdateHUD ();
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
@@ -38,25 +43,15 @@ public class PacmanController : MonoBehaviour {
 		}
 	}
 
-	void SetStartPosition () {
-		transform.position = startPosition;
-	}
-	
-	void CollidedWithGhost() {
-		SetStartPosition ();
-		
-		if (--lifes < 0) {
-			GameOver();
-		}
 
-		UpdateHUD ();
+	void CollidedWithGhost() {		
+		if (--lifes < 0) {
+			SendMessageUpwards("OnPacmanDeath");
+		}
 	}
 
 	void UpdateHUD() {
 		lifeHUD.text = lifes.ToString();
-	}
-
-	void GameOver() {
-		Debug.Log ("Game Over !");
+		scoreHUD.text = GameController.score.ToString ();
 	}
 }
