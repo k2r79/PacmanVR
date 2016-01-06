@@ -20,7 +20,9 @@ public abstract class GhostController : PacmanCharacterController {
 		pacman = GameObject.Find("Pacman");
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 
+		target = new Vector3 ();
 		transform.localPosition = startPosition;
+		nextPosition = target;
 
 		doOnStart ();
 	}
@@ -38,18 +40,16 @@ public abstract class GhostController : PacmanCharacterController {
 	abstract protected void doOnUpdate();
 
 	void OnTriggerEnter(Collider collider) {
-		if (collider.transform.parent != null 
-		    && collider.transform.parent.name == "Intersections") {
-			IntersectionController intersection = collider.GetComponent<IntersectionController>();
-
-			nextPosition = ClosestIntersection(intersection).transform.position;
+		if (collider.transform.parent != null && collider.transform.parent.name == "Intersections") {
+			IntersectionController intersection = collider.GetComponent<IntersectionController> ();
+			nextPosition = ClosestGameObject (intersection);
 			previousIntersection = collider.gameObject;
 		}
 	}
 
-	protected GameObject ClosestIntersection(IntersectionController intersection) {
+	protected Vector3 ClosestGameObject(IntersectionController intersection) {
 		float minDistance = float.MaxValue;
-		GameObject bestChildIntersection = null;
+		Vector3 closestCoordinates = new Vector3();
 
 		GameObject[] intersections = intersection.IntersectionList ();
 		System.Array.Reverse (intersections);
@@ -60,12 +60,16 @@ public abstract class GhostController : PacmanCharacterController {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors [intersectionIndex] * intersectionOffset, target);
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
-					bestChildIntersection = childIntersection;
+					closestCoordinates = childIntersection.transform.position;
 				}
 			}
 		}
 
-		return bestChildIntersection;
+		if (Vector3.Distance (target, transform.position) < minDistance) {
+			closestCoordinates = target;
+		}
+
+		return closestCoordinates;
 	}
 
 	public new void OnPacmanDeath() {
