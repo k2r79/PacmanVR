@@ -19,8 +19,6 @@ public class PacmanController : MonoBehaviour {
 		cardboardHead = GetComponentInChildren<CardboardHead> ();
 		lifeHUD = GameObject.Find ("HUD Life").GetComponent<UnityEngine.UI.Text>();
 
-		lifeHUD.text = "Test";
-
 		SetStartPosition ();
 		UpdateHUD ();
 	}
@@ -35,7 +33,7 @@ public class PacmanController : MonoBehaviour {
 	}
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
-		if (hit.collider.name == "Ghost") {
+		if (hit.collider.transform.parent.name == "Ghosts") {
 			CollidedWithGhost();
 		}
 	}
