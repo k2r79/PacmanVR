@@ -5,6 +5,6 @@ public class PacmanCharacterController : MonoBehaviour {
 	public Vector3 startPosition;
 
 	public void OnPacmanDeath () {
-		transform.localPosition = startPosition;
+		transform.position = startPosition;
 	}
 }

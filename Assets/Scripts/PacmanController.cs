@@ -44,9 +44,11 @@ public class PacmanController : PacmanCharacterController {
 	}
 
 
-	void CollidedWithGhost() {		
+	void CollidedWithGhost() {
+		transform.parent.BroadcastMessage("OnPacmanDeath");
+
 		if (--lifes < 0) {
-			SendMessageUpwards("OnPacmanDeath");
+
 		}
 	}
 

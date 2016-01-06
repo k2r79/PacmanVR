@@ -20,7 +20,7 @@ public abstract class GhostController : PacmanCharacterController {
 		pacman = GameObject.Find("Pacman");
 		navMeshAgent = GetComponent<NavMeshAgent> ();
 
-		transform.position = startPosition;
+		transform.localPosition = startPosition;
 
 		doOnStart ();
 	}
@@ -54,10 +54,10 @@ public abstract class GhostController : PacmanCharacterController {
 		GameObject[] intersections = intersection.IntersectionList ();
 		System.Array.Reverse (intersections);
 		for (int intersectionIndex = 0; intersectionIndex < intersections.Length; intersectionIndex++) {
-			GameObject childIntersection = intersections[intersectionIndex];
+			GameObject childIntersection = intersections [intersectionIndex];
 
 			if (childIntersection != null && childIntersection != previousIntersection) {
-				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors[intersectionIndex] * intersectionOffset, target);
+				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors [intersectionIndex] * intersectionOffset, target);
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
 					bestChildIntersection = childIntersection;
@@ -66,5 +66,15 @@ public abstract class GhostController : PacmanCharacterController {
 		}
 
 		return bestChildIntersection;
+	}
+
+	public new void OnPacmanDeath() {
+		navMeshAgent.enabled = false;
+		enabled = false;
+
+		base.OnPacmanDeath ();
+
+		enabled = true;
+		navMeshAgent.enabled = true;
 	}
 }
