@@ -5,24 +5,27 @@ public abstract class GhostController : PacmanCharacterController {
 	
 	public Vector3 target;
 	public Vector3 scatterCorner;
+	public Vector3 moveDirection;
+
 	public int scoreBeforeStart = 0;
+	public int speed = 1;
 	
 	private Vector3[] offsetVectors = new Vector3[] { new Vector3(1, 0, 0), new Vector3(0, 0, -1), new Vector3(-1, 0, 0), new Vector3(0, 0, 1) };
 	public float intersectionOffset = 1.5f;
-	
-	protected NavMeshAgent navMeshAgent;
+
+	private CharacterController characterController;
+
 	protected GameObject pacman;
-	protected Vector3 nextPosition;
 	protected GameObject previousIntersection;
 
 	// Use this for initialization
 	void Start () {
 		pacman = GameObject.Find("Pacman");
-		navMeshAgent = GetComponent<NavMeshAgent> ();
+		characterController = GetComponent<CharacterController> ();
 
-		target = new Vector3 ();
+		target = new Vector3();
 		transform.localPosition = startPosition;
-		nextPosition = target;
+		moveDirection = Vector3.forward;
 
 		doOnStart ();
 	}
@@ -30,7 +33,7 @@ public abstract class GhostController : PacmanCharacterController {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.score >= scoreBeforeStart) {
-			navMeshAgent.SetDestination (nextPosition);
+			characterController.Move(moveDirection * speed * Time.deltaTime);
 		}
 
 		doOnUpdate ();
@@ -42,14 +45,14 @@ public abstract class GhostController : PacmanCharacterController {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.transform.parent != null && collider.transform.parent.name == "Intersections") {
 			IntersectionController intersection = collider.GetComponent<IntersectionController> ();
-			nextPosition = ClosestGameObject (intersection);
+			moveDirection = NextDirection (intersection);
 			previousIntersection = collider.gameObject;
 		}
 	}
 
-	protected Vector3 ClosestGameObject(IntersectionController intersection) {
+	protected Vector3 NextDirection(IntersectionController intersection) {
 		float minDistance = float.MaxValue;
-		Vector3 closestCoordinates = new Vector3();
+		GameObject nextGameObject = intersection.gameObject;
 
 		GameObject[] intersections = intersection.IntersectionList ();
 		System.Array.Reverse (intersections);
@@ -58,26 +61,21 @@ public abstract class GhostController : PacmanCharacterController {
 
 			if (childIntersection != null && childIntersection != previousIntersection) {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors [intersectionIndex] * intersectionOffset, target);
-				if (intersection.name == "Intersection (5)") {
-					Debug.Log(childIntersection.name + " : " + childIntersectionDistance);
-				}
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
-					closestCoordinates = childIntersection.transform.position;
+					nextGameObject = childIntersection;
 				}
 			}
 		}
 
-		return closestCoordinates;
+		return Vector3.Normalize(nextGameObject.transform.position - transform.position);
 	}
 
 	public new void OnPacmanDeath() {
-		navMeshAgent.enabled = false;
 		enabled = false;
 
 		base.OnPacmanDeath ();
 
 		enabled = true;
-		navMeshAgent.enabled = true;
 	}
 }
