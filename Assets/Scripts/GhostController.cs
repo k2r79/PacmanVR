@@ -58,15 +58,14 @@ public abstract class GhostController : PacmanCharacterController {
 
 			if (childIntersection != null && childIntersection != previousIntersection) {
 				float childIntersectionDistance = Vector3.Distance (intersection.transform.position + offsetVectors [intersectionIndex] * intersectionOffset, target);
+				if (intersection.name == "Intersection (5)") {
+					Debug.Log(childIntersection.name + " : " + childIntersectionDistance);
+				}
 				if (childIntersectionDistance < minDistance) {
 					minDistance = childIntersectionDistance;
 					closestCoordinates = childIntersection.transform.position;
 				}
 			}
-		}
-
-		if (Vector3.Distance (target, transform.position) < minDistance) {
-			closestCoordinates = target;
 		}
 
 		return closestCoordinates;
