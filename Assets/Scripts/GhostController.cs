@@ -8,7 +8,7 @@ public abstract class GhostController : PacmanCharacterController {
 	public Vector3 moveDirection;
 
 	public int scoreBeforeStart = 0;
-	public int speed = 1;
+	public float speed = 1.0f;
 	
 	private Vector3[] offsetVectors = new Vector3[] { new Vector3(1, 0, 0), new Vector3(0, 0, -1), new Vector3(-1, 0, 0), new Vector3(0, 0, 1) };
 	public float intersectionOffset = 1.5f;
@@ -25,7 +25,7 @@ public abstract class GhostController : PacmanCharacterController {
 
 		target = new Vector3();
 		transform.localPosition = startPosition;
-		moveDirection = Vector3.forward;
+		moveDirection = Vector3.Normalize(transform.position - new Vector3());
 
 		doOnStart ();
 	}
@@ -33,6 +33,7 @@ public abstract class GhostController : PacmanCharacterController {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.score >= scoreBeforeStart) {
+			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 			characterController.Move(moveDirection * speed * Time.deltaTime);
 		}
 
