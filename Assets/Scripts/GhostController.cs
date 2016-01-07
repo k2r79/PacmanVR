@@ -34,6 +34,7 @@ public abstract class GhostController : PacmanCharacterController {
 	void Update () {
 		if (GameController.score >= scoreBeforeStart) {
 			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+
 			characterController.Move(moveDirection * speed * Time.deltaTime);
 		}
 
@@ -68,6 +69,7 @@ public abstract class GhostController : PacmanCharacterController {
 				}
 			}
 		}
+
 
 		return Vector3.Normalize(nextGameObject.transform.position - transform.position);
 	}
