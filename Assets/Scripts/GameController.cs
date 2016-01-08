@@ -3,40 +3,29 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public enum GameMode { Scatter, Chase };
+	public enum GameMode { Scatter, Chase, Frightened };
+	public float[] gameModeDuration = new float[] { 7.0f, 20.0f, 10.0f };
 	public static GameMode mode;
 
 	public static int score;
 	
-	private float scatterTime;
-	private float chaseTime;
+	private float gameModeTimer;
 	
 	void Start () {
 		mode = GameMode.Scatter;
 
 		score = 0;
 
-		scatterTime = 0.0f;
-		chaseTime = 0.0f;
+		gameModeTimer = 0.0f;
 	}
 
 	void Update () {
-		if (mode.Equals(GameMode.Scatter)) {
-			scatterTime += Time.deltaTime;
+		gameModeTimer += Time.deltaTime;
 
-			if (scatterTime > 7.0f) {
-				scatterTime = 0.0f;
+		if (gameModeTimer > gameModeDuration[(int) mode]) {
+			gameModeTimer = 0.0f;
 
-				mode = GameMode.Chase;
-			}
-		} else {
-			chaseTime += Time.deltaTime;
-
-			if (chaseTime > 20.0f) {
-				chaseTime = 0.0f;
-				
-				mode = GameMode.Scatter;
-			}
+			mode = (GameMode) ((int) ++mode % 2);
 		}
 	}
 }

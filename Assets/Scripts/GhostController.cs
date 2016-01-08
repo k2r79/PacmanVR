@@ -5,7 +5,7 @@ public abstract class GhostController : PacmanCharacterController {
 	
 	public Vector3 target;
 	public Vector3 scatterCorner;
-	public Vector3 moveDirection;
+	public Vector3 nextPosition;
 
 	public int scoreBeforeStart = 0;
 	public float speed = 1.0f;
@@ -25,7 +25,6 @@ public abstract class GhostController : PacmanCharacterController {
 
 		target = new Vector3();
 		transform.localPosition = startPosition;
-		moveDirection = Vector3.Normalize(transform.position - new Vector3());
 
 		doOnStart ();
 	}
@@ -33,8 +32,9 @@ public abstract class GhostController : PacmanCharacterController {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.score >= scoreBeforeStart) {
-			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
+			Vector3 moveDirection = Vector3.Normalize(nextPosition - transform.position);
 
+			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
 			characterController.Move(moveDirection * speed * Time.deltaTime);
 		}
 
@@ -47,12 +47,12 @@ public abstract class GhostController : PacmanCharacterController {
 	void OnTriggerEnter(Collider collider) {
 		if (collider.transform.parent != null && collider.transform.parent.name == "Intersections") {
 			IntersectionController intersection = collider.GetComponent<IntersectionController> ();
-			moveDirection = NextDirection (intersection);
+			nextPosition = NextPosition (intersection);
 			previousIntersection = collider.gameObject;
 		}
 	}
 
-	protected Vector3 NextDirection(IntersectionController intersection) {
+	protected Vector3 NextPosition(IntersectionController intersection) {
 		float minDistance = float.MaxValue;
 		GameObject nextGameObject = intersection.gameObject;
 
@@ -70,8 +70,7 @@ public abstract class GhostController : PacmanCharacterController {
 			}
 		}
 
-
-		return Vector3.Normalize(nextGameObject.transform.position - transform.position);
+		return nextGameObject.transform.position;
 	}
 
 	public new void OnPacmanDeath() {
