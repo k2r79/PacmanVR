@@ -11,7 +11,7 @@ public class PelletController : MonoBehaviour {
 	
 	}
 
-	void OnTriggerEnter(Collider collider) {
+	public void OnTriggerEnter(Collider collider) {
 		if (collider.transform.name == "CardboardMain") {
 			GameController.score++;
 

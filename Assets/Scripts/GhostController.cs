@@ -53,6 +53,13 @@ public abstract class GhostController : PacmanCharacterController {
 	}
 
 	protected Vector3 NextPosition(IntersectionController intersection) {
+		if (GameController.mode == GameController.GameMode.Frightened) {
+			System.Random random = new System.Random();
+			int randomIntersectionIndex = random.Next(0, intersection.IntersectionList ().Length);
+
+			return intersection.IntersectionList ()[randomIntersectionIndex].transform.position;
+		}
+
 		float minDistance = float.MaxValue;
 		GameObject nextGameObject = intersection.gameObject;
 
