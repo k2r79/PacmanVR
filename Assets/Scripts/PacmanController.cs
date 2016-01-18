@@ -11,8 +11,7 @@ public class PacmanController : PacmanCharacterController {
 	private CardboardHead cardboardHead;
 	private UnityEngine.UI.Text lifeHUD;
 	private UnityEngine.UI.Text scoreHUD;
-
-	// Use this for initialization
+	
 	void Start () {
 		pacman = GameObject.Find("Pacman");
 		pacmanCharacter = GetComponent<CharacterController> ();
@@ -25,8 +24,7 @@ public class PacmanController : PacmanCharacterController {
 
 		UpdateHUD ();
 	}
-
-	// Update is called once per frame
+	
 	void Update () {
 		Vector3 headRotation = new Vector3(pacman.transform.eulerAngles.x, cardboardHead.transform.eulerAngles.y + 90, pacman.transform.eulerAngles.z);
 		pacman.transform.eulerAngles = headRotation;
@@ -45,10 +43,14 @@ public class PacmanController : PacmanCharacterController {
 
 
 	void CollidedWithGhost() {
-		transform.parent.BroadcastMessage("OnPacmanDeath");
+		if (GameController.mode.Equals (GameController.GameMode.Frightened)) {
+			GameController.score += 200;
+		} else {
+			transform.parent.BroadcastMessage("OnPacmanDeath");
 
-		if (--lifes < 0) {
-
+			if (--lifes < 0) {
+				
+			}
 		}
 	}
 

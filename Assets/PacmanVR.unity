@@ -4873,6 +4873,8 @@ MonoBehaviour:
   scoreBeforeStart: 0
   speed: 2.79999995
   intersectionOffset: 1.5
+  frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
+    type: 2}
   targetPositionOffset: 3
 --- !u!143 &385252271
 CharacterController:
@@ -6085,7 +6087,7 @@ GameObject:
   - 33: {fileID: 487240470}
   - 23: {fileID: 487240469}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -18111,6 +18113,8 @@ MonoBehaviour:
   scoreBeforeStart: 80
   speed: 2.79999995
   intersectionOffset: 1.5
+  frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
+    type: 2}
   distanceThreshold: 6
 --- !u!143 &1427380013
 CharacterController:
@@ -18381,6 +18385,10 @@ Prefab:
   m_Modification:
     m_TransformParent: {fileID: 467109739}
     m_Modifications:
+    - target: {fileID: 2327904, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: m_Materials.Array.size
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 474510, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
       propertyPath: m_LocalPosition.x
       value: -10.3000002
@@ -18417,6 +18425,18 @@ Prefab:
       propertyPath: m_Name
       value: Blinky
       objectReference: {fileID: 0}
+    - target: {fileID: 135578, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: m_Name
+      value: Body
+      objectReference: {fileID: 0}
+    - target: {fileID: 2327904, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634, type: 2}
+    - target: {fileID: 11492732, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: frightenedBodyMaterial
+      value: 
+      objectReference: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
   m_IsPrefabParent: 0
@@ -18769,7 +18789,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: 7e36cda0180df450098b100d57046803, type: 3}
       propertyPath: m_RootOrder
-      value: 2
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 2300042, guid: 7e36cda0180df450098b100d57046803, type: 3}
       propertyPath: m_Materials.Array.data[0]
@@ -21494,6 +21514,8 @@ MonoBehaviour:
   scoreBeforeStart: 30
   speed: 2.79999995
   intersectionOffset: 1.5
+  frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
+    type: 2}
   targetPositionOffset: 1.5
 --- !u!136 &1709109348
 CapsuleCollider:
@@ -24469,7 +24491,7 @@ GameObject:
   - 33: {fileID: 1871160641}
   - 23: {fileID: 1871160640}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -24985,7 +25007,7 @@ GameObject:
   - 33: {fileID: 1910794237}
   - 23: {fileID: 1910794236}
   m_Layer: 0
-  m_Name: Sphere
+  m_Name: Body
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

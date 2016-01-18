@@ -8,15 +8,17 @@ public class GameController : MonoBehaviour {
 	public static GameMode mode;
 
 	public static int score;
+	public static int eatenPellets;
 
-	private GameMode previousGameMode;
-	private float gameModeTimer;
+	private static GameMode previousGameMode;
+	private static float gameModeTimer;
 	
 	void Start () {
 		mode = GameMode.Scatter;
 		previousGameMode = mode;
 
 		score = 0;
+		eatenPellets = 0;
 
 		gameModeTimer = 0.0f;
 	}
@@ -27,12 +29,18 @@ public class GameController : MonoBehaviour {
 		if (gameModeTimer > gameModeDuration[(int) mode]) {
 			gameModeTimer = 0.0f;
 
-			previousGameMode = mode;
-			if (mode != GameMode.Frightened) {
-				mode = (GameMode) ((int) ++mode % 2);
-			} else {
+			if (mode.Equals(GameMode.Frightened)) {
 				mode = previousGameMode;
+			} else {
+				previousGameMode = mode;
+				mode = (GameMode) ((int) ++mode % 2);
 			}
 		}
+	}
+
+	public static void SwitchToFrightened() {
+		previousGameMode = mode;
+		mode = GameMode.Frightened;
+		gameModeTimer = 0.0f;
 	}
 }

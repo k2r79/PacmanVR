@@ -5,7 +5,7 @@ public class EnergyPelletController : PelletController {
 
 	void OnTriggerEnter(Collider collider) {
 		if (collider.transform.name == "CardboardMain") {
-			GameController.mode = GameController.GameMode.Frightened;
+			GameController.SwitchToFrightened();
 		}
 
 		base.OnTriggerEnter (collider);
