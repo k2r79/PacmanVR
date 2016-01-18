@@ -4870,8 +4870,9 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   scatterCorner: {x: .389999986, y: .309999287, z: -23.8099995}
   nextPosition: {x: -35.0999985, y: 4, z: -50.2999992}
-  scoreBeforeStart: 0
+  pelletsBeforeStart: 0
   speed: 2.79999995
+  frightenedSpeed: .5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}
@@ -18110,8 +18111,9 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   scatterCorner: {x: -21, y: 0, z: 0}
   nextPosition: {x: -35.0999985, y: 4, z: -50.2999992}
-  scoreBeforeStart: 80
+  pelletsBeforeStart: 0
   speed: 2.79999995
+  frightenedSpeed: .5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}
@@ -21511,8 +21513,9 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   scatterCorner: {x: -21, y: 0, z: 0}
   nextPosition: {x: -35.0999985, y: 4, z: -50.2999992}
-  scoreBeforeStart: 30
+  pelletsBeforeStart: 0
   speed: 2.79999995
+  frightenedSpeed: .5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}

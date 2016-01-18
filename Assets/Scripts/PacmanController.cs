@@ -37,14 +37,16 @@ public class PacmanController : PacmanCharacterController {
 
 	void OnControllerColliderHit(ControllerColliderHit hit) {
 		if (hit.collider.transform.parent.name == "Ghosts") {
-			CollidedWithGhost();
+			CollidedWithGhost(hit.collider.gameObject.GetComponent<GhostController>());
 		}
 	}
 
 
-	void CollidedWithGhost() {
+	void CollidedWithGhost(GhostController ghost) {
 		if (GameController.mode.Equals (GameController.GameMode.Frightened)) {
 			GameController.score += 200;
+
+			ghost.Eaten();
 		} else {
 			transform.parent.BroadcastMessage("OnPacmanDeath");
 

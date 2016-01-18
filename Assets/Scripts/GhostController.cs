@@ -115,4 +115,8 @@ public abstract class GhostController : PacmanCharacterController {
 
 		enabled = true;
 	}
+
+	public void Eaten() {
+		transform.position = startPosition;
+	}
 }
