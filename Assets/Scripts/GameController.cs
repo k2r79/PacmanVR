@@ -39,7 +39,10 @@ public class GameController : MonoBehaviour {
 	}
 
 	public static void SwitchToFrightened() {
-		previousGameMode = mode;
+		if (!mode.Equals (GameMode.Frightened)) {
+			previousGameMode = mode;
+		}
+
 		mode = GameMode.Frightened;
 		gameModeTimer = 0.0f;
 	}
