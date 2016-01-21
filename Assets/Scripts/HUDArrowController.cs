@@ -27,8 +27,9 @@ public class HUDArrowController : MonoBehaviour {
 			float positionIndicator = Vector3.Dot(ghostVector, sideVector);
 
 			float angle = Vector3.Angle(pacmanVector, ghostVector);
-		
-			Vector3 eulerAngles = new Vector3 (0, 0, angle + (positionIndicator > 0.0f ? 180.0f : 0.0f));
+			int angleSign = positionIndicator > 0.0f ? -1 : 1;
+	
+			Vector3 eulerAngles = new Vector3 (0, 0, angle * angleSign);
 			transform.localEulerAngles = eulerAngles;
 		} else {
 			this.enabled = false;

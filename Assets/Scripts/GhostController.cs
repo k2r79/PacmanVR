@@ -5,7 +5,8 @@ public abstract class GhostController : PacmanCharacterController {
 	
 	public Vector3 target;
 	public Vector3 scatterCorner;
-	public Vector3 nextPosition;
+	public Vector3 initialNextPosition;
+	private Vector3 nextPosition;
 
 	public int pelletsBeforeStart = 0;
 	public float speed = 1.0f;
@@ -33,6 +34,7 @@ public abstract class GhostController : PacmanCharacterController {
 
 		target = new Vector3();
 		transform.localPosition = startPosition;
+		nextPosition = initialNextPosition;
 
 		doOnStart ();
 	}
@@ -112,11 +114,14 @@ public abstract class GhostController : PacmanCharacterController {
 		enabled = false;
 
 		base.OnPacmanDeath ();
+		nextPosition = initialNextPosition;
 
 		enabled = true;
 	}
 
 	public void Eaten() {
-		transform.position = startPosition;
+		transform.localPosition = startPosition;
+
+		nextPosition = initialNextPosition;
 	}
 }
