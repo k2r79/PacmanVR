@@ -3,18 +3,25 @@ using System.Collections;
 
 public class HUDArrowController : MonoBehaviour {
 
+	private static float thresholdDistance = 8.0f;
+
 	public GameObject targetGhost;
 
 	private GameObject pacman;
-	
+	private CanvasRenderer renderer;
 
 	void Start () {
 		pacman = GameObject.Find ("Pacman");
+		renderer = GetComponent<CanvasRenderer> ();
 	}
 
 	void Update () {
-		if (true || Vector3.Distance (transform.position, targetGhost.transform.position) < 3.0f) {
-			this.enabled = true;
+		float distanceToTargetGhost = Vector3.Distance (transform.position, targetGhost.transform.position);
+		if (distanceToTargetGhost < thresholdDistance) {
+			renderer.SetAlpha(1);
+
+			float scale = 1.0f - (distanceToTargetGhost / thresholdDistance * 0.2f);
+			transform.localScale = new Vector3(scale, scale, scale);
 
 			Vector3 pacmanVector = transform.position - pacman.transform.position;
 			Vector3 ghostVector = targetGhost.transform.position - transform.position;
@@ -32,7 +39,7 @@ public class HUDArrowController : MonoBehaviour {
 			Vector3 eulerAngles = new Vector3 (0, 0, angle * angleSign);
 			transform.localEulerAngles = eulerAngles;
 		} else {
-			this.enabled = false;
+			renderer.SetAlpha(0);
 		}
 	}
 }

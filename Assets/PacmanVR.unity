@@ -25256,7 +25256,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   upIntersection: {fileID: 1633196245}
   leftIntersection: {fileID: 1100126970}
-  downIntersection: {fileID: 890297452}
+  downIntersection: {fileID: 1387214679}
   rightIntersection: {fileID: 0}
 --- !u!1 &1897835300
 GameObject:
