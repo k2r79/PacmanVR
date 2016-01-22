@@ -3,8 +3,8 @@ using System.Collections;
 
 public class GameController : MonoBehaviour {
 
-	public enum GameMode { Scatter, Chase, Frightened };
-	public float[] gameModeDuration = new float[] { 7.0f, 20.0f, 10.0f };
+	public enum GameMode { Scatter, Chase, Frightened, Pause };
+	public float[] gameModeDuration = new float[] { 7.0f, 20.0f, 10.0f, 8.0f };
 	public static GameMode mode;
 
 	public static int score;
@@ -14,8 +14,8 @@ public class GameController : MonoBehaviour {
 	private static float gameModeTimer;
 	
 	void Start () {
-		mode = GameMode.Scatter;
-		previousGameMode = mode;
+		mode = GameMode.Pause;
+		previousGameMode = GameMode.Scatter;
 
 		score = 0;
 		eatenPellets = 0;
@@ -31,6 +31,8 @@ public class GameController : MonoBehaviour {
 
 			if (mode.Equals(GameMode.Frightened)) {
 				mode = previousGameMode;
+			} else if (mode.Equals(GameMode.Pause)) {
+				mode = GameMode.Scatter;
 			} else {
 				previousGameMode = mode;
 				mode = (GameMode) ((int) ++mode % 2);

@@ -263,6 +263,7 @@ MonoBehaviour:
   - 7
   - 20
   - 10
+  - 8
 --- !u!4 &25731214
 Transform:
   m_ObjectHideFlags: 0
@@ -8895,6 +8896,63 @@ MonoBehaviour:
   leftIntersection: {fileID: 0}
   downIntersection: {fileID: 37667338}
   rightIntersection: {fileID: 1039544078}
+--- !u!1 &663811770
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 663811771}
+  - 136: {fileID: 663811773}
+  - 114: {fileID: 663811772}
+  m_Layer: 0
+  m_Name: Portal Right
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &663811771
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663811770}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1.39999998, y: 1.20000017, z: -42.5999985}
+  m_LocalScale: {x: 3.43373203, y: 3.43373203, z: 3.43373203}
+  m_Children: []
+  m_Father: {fileID: 1227658281}
+  m_RootOrder: 65
+--- !u!114 &663811772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663811770}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43eb8b1c4324e4b3d8b4ee508155f435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upIntersection: {fileID: 0}
+  leftIntersection: {fileID: 0}
+  downIntersection: {fileID: 0}
+  rightIntersection: {fileID: 2138619986}
+--- !u!136 &663811773
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 663811770}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .100000001
+  m_Height: .5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &672194888
 GameObject:
   m_ObjectHideFlags: 0
@@ -15562,6 +15620,8 @@ Transform:
   - {fileID: 381708189}
   - {fileID: 138456985}
   - {fileID: 353445099}
+  - {fileID: 663811771}
+  - {fileID: 2146502671}
   m_Father: {fileID: 0}
   m_RootOrder: 2
 --- !u!1 &1228496145
@@ -23595,7 +23655,7 @@ MonoBehaviour:
   upIntersection: {fileID: 936813456}
   leftIntersection: {fileID: 1866633145}
   downIntersection: {fileID: 1897835300}
-  rightIntersection: {fileID: 2138619986}
+  rightIntersection: {fileID: 663811770}
 --- !u!1 &1816979179
 GameObject:
   m_ObjectHideFlags: 0
@@ -27861,7 +27921,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   upIntersection: {fileID: 37667338}
-  leftIntersection: {fileID: 1816543024}
+  leftIntersection: {fileID: 2146502670}
   downIntersection: {fileID: 1273623641}
   rightIntersection: {fileID: 1807108860}
 --- !u!1 &2145484364
@@ -27949,6 +28009,63 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6bc77532b4215414da705f8a6285fcb3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &2146502670
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 2146502671}
+  - 136: {fileID: 2146502673}
+  - 114: {fileID: 2146502672}
+  m_Layer: 0
+  m_Name: Portal Left
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &2146502671
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2146502670}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -71, y: 1.20000017, z: -42.7000008}
+  m_LocalScale: {x: 3.43373203, y: 3.43373203, z: 3.43373203}
+  m_Children: []
+  m_Father: {fileID: 1227658281}
+  m_RootOrder: 66
+--- !u!114 &2146502672
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2146502670}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 43eb8b1c4324e4b3d8b4ee508155f435, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  upIntersection: {fileID: 0}
+  leftIntersection: {fileID: 1816543024}
+  downIntersection: {fileID: 0}
+  rightIntersection: {fileID: 0}
+--- !u!136 &2146502673
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 2146502670}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: .100000001
+  m_Height: .5
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &2147225742
 GameObject:
   m_ObjectHideFlags: 0

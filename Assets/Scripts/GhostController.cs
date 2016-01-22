@@ -41,7 +41,7 @@ public abstract class GhostController : PacmanCharacterController {
 	
 	// Update is called once per frame
 	void Update () {
-		if (GameController.eatenPellets >= pelletsBeforeStart) {
+		if (GameController.eatenPellets >= pelletsBeforeStart && !GameController.mode.Equals(GameController.GameMode.Pause)) {
 			Vector3 moveDirection = Vector3.Normalize(nextPosition - transform.position);
 
 			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);

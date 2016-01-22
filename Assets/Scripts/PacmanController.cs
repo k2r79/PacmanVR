@@ -29,8 +29,10 @@ public class PacmanController : PacmanCharacterController {
 		Vector3 headRotation = new Vector3(pacman.transform.eulerAngles.x, cardboardHead.transform.eulerAngles.y + 90, pacman.transform.eulerAngles.z);
 		pacman.transform.eulerAngles = headRotation;
 
-		Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
-		pacmanCharacter.Move (moveDirection * speed);
+		if (!GameController.mode.Equals (GameController.GameMode.Pause)) {
+			Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
+			pacmanCharacter.Move (moveDirection * speed);
+		}
 
 		UpdateHUD ();
 	}
