@@ -6,14 +6,22 @@ public class PacmanController : PacmanCharacterController {
 	public float speed = 0.1f;
 	public int lifes = 3;
 
+	public AudioClip movingSound;
+	public float movingSoundVolume;
+	public AudioClip deathSound;
+	public float deathSoundVolume;
+
 	private GameObject pacman;
+	private AudioSource audioSource;
 	private CharacterController pacmanCharacter;
 	private CardboardHead cardboardHead;
 	private UnityEngine.UI.Text lifeHUD;
 	private UnityEngine.UI.Text scoreHUD;
+	private UnityEngine.UI.Text textHUD;
 	
 	void Start () {
 		pacman = GameObject.Find("Pacman");
+		audioSource = GetComponent<AudioSource> ();
 		pacmanCharacter = GetComponent<CharacterController> ();
 		cardboardHead = GetComponentInChildren<CardboardHead> ();
 		lifeHUD = GameObject.Find ("HUD Life").GetComponent<UnityEngine.UI.Text>();
@@ -21,6 +29,9 @@ public class PacmanController : PacmanCharacterController {
 
 		startPosition = new Vector3 (-10.4f, 1.149f, -5.911f);
 		transform.localPosition = startPosition;
+
+		audioSource.volume = movingSoundVolume;
+		audioSource.clip = movingSound;
 
 		UpdateHUD ();
 	}
@@ -30,8 +41,15 @@ public class PacmanController : PacmanCharacterController {
 		pacman.transform.eulerAngles = headRotation;
 
 		if (!GameController.mode.Equals (GameController.GameMode.Pause)) {
+			if (!audioSource.isPlaying) {
+				audioSource.volume = movingSoundVolume;
+				audioSource.Play ();
+			}
+
 			Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
 			pacmanCharacter.Move (moveDirection * speed);
+		} else {
+			
 		}
 
 		UpdateHUD ();
@@ -51,9 +69,14 @@ public class PacmanController : PacmanCharacterController {
 			ghost.Eaten();
 		} else {
 			transform.parent.BroadcastMessage("OnPacmanDeath");
+			GameController.ResetLevel();
+
+			audioSource.Stop ();
+			audioSource.volume = deathSoundVolume;
+			audioSource.PlayOneShot (deathSound);
 
 			if (--lifes < 0) {
-				
+	
 			}
 		}
 	}
