@@ -36,12 +36,21 @@ public abstract class GhostController : PacmanCharacterController {
 		transform.localPosition = startPosition;
 		nextPosition = initialNextPosition;
 
+		audioSource = GetComponent<AudioSource> ();
+		audioSource.volume = movingSoundVolume;
+		audioSource.clip = movingSound;
+
 		doOnStart ();
 	}
 	
 	// Update is called once per frame
 	void Update () {
 		if (GameController.eatenPellets >= pelletsBeforeStart && !GameController.mode.Equals(GameController.GameMode.Pause)) {
+			if (!audioSource.isPlaying) {
+				audioSource.volume = movingSoundVolume;
+				audioSource.Play ();
+			}
+
 			Vector3 moveDirection = Vector3.Normalize(nextPosition - transform.position);
 
 			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
@@ -121,6 +130,10 @@ public abstract class GhostController : PacmanCharacterController {
 
 	public void Eaten() {
 		transform.localPosition = startPosition;
+
+		audioSource.Stop ();
+		audioSource.volume = deathSoundVolume;
+		audioSource.PlayOneShot (deathSound);
 
 		nextPosition = initialNextPosition;
 	}

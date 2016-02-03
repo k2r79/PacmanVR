@@ -4,6 +4,14 @@ using System.Collections;
 public class PacmanCharacterController : MonoBehaviour {
 	public Vector3 startPosition;
 
+	protected AudioSource audioSource;
+
+	public AudioClip movingSound;
+	public float movingSoundVolume;
+
+	public AudioClip deathSound;
+	public float deathSoundVolume;
+
 	public void OnPacmanDeath () {
 		transform.position = startPosition;
 	}

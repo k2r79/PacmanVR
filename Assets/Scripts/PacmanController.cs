@@ -6,13 +6,7 @@ public class PacmanController : PacmanCharacterController {
 	public float speed = 0.1f;
 	public int lifes = 3;
 
-	public AudioClip movingSound;
-	public float movingSoundVolume;
-	public AudioClip deathSound;
-	public float deathSoundVolume;
-
 	private GameObject pacman;
-	private AudioSource audioSource;
 	private CharacterController pacmanCharacter;
 	private CardboardHead cardboardHead;
 	private UnityEngine.UI.Text lifeHUD;
@@ -21,7 +15,6 @@ public class PacmanController : PacmanCharacterController {
 	
 	void Start () {
 		pacman = GameObject.Find("Pacman");
-		audioSource = GetComponent<AudioSource> ();
 		pacmanCharacter = GetComponent<CharacterController> ();
 		cardboardHead = GetComponentInChildren<CardboardHead> ();
 		lifeHUD = GameObject.Find ("HUD Life").GetComponent<UnityEngine.UI.Text>();
@@ -30,6 +23,7 @@ public class PacmanController : PacmanCharacterController {
 		startPosition = new Vector3 (-10.4f, 1.149f, -5.911f);
 		transform.localPosition = startPosition;
 
+		audioSource = GetComponent<AudioSource> ();
 		audioSource.volume = movingSoundVolume;
 		audioSource.clip = movingSound;
 
