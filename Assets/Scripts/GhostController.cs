@@ -48,13 +48,6 @@ public abstract class GhostController : PacmanCharacterController {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.eatenPellets >= pelletsBeforeStart && !GameController.mode.Equals(GameController.GameMode.Pause)) {
-			if (!audioSource.isPlaying  || audioSource.clip == frightenedSound) {
-				audioSource.clip = movingSound;
-				audioSource.loop = true;
-				audioSource.volume = movingSoundVolume;
-				audioSource.Play ();
-			}
-
 			Vector3 moveDirection = Vector3.Normalize(nextPosition - transform.position);
 
 			transform.rotation = Quaternion.LookRotation(moveDirection, Vector3.up);
@@ -64,6 +57,13 @@ public abstract class GhostController : PacmanCharacterController {
 
 				characterController.Move(moveDirection * frightenedSpeed * Time.deltaTime);
 			} else {
+				if (!audioSource.isPlaying  || audioSource.clip == frightenedSound) {
+					audioSource.clip = movingSound;
+					audioSource.loop = true;
+					audioSource.volume = movingSoundVolume;
+					audioSource.Play ();
+				}
+
 				bodyRenderer.material = baseBodyMaterial;
 
 				characterController.Move(moveDirection * speed * Time.deltaTime);
