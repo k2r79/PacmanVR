@@ -41,7 +41,7 @@ public class PacmanController : PacmanCharacterController {
 			}
 
 			Vector3 moveDirection = new Vector3 (cardboardHead.Gaze.direction.x, 0, cardboardHead.Gaze.direction.z);
-			pacmanCharacter.Move (moveDirection * speed);
+			pacmanCharacter.Move (moveDirection * speed * Time.deltaTime);
 		} else {
 			
 		}

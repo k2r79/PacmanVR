@@ -15,6 +15,15 @@ public class GameController : MonoBehaviour {
 
 	public AudioClip startAudio;
 	private static AudioSource audioSource;
+
+	void Awake() {
+		#if UNITY_ANDROID || UNITY_IPHONE
+			Application.targetFrameRate = 30;
+			QualitySettings.vSyncCount = 0;
+			QualitySettings.antiAliasing = 0;
+			Screen.sleepTimeout = SleepTimeout.NeverSleep;
+		#endif
+	}
 	
 	void Start () {
 		ResetLevel ();

@@ -5119,7 +5119,7 @@ MonoBehaviour:
   scatterCorner: {x: 0.39, y: 0.3099993, z: -23.81}
   initialNextPosition: {x: -10.3, y: 0, z: -14.53}
   pelletsBeforeStart: 0
-  speed: 2.8
+  speed: 0.8
   frightenedSpeed: 0.5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
@@ -9731,7 +9731,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: -0.013320737, y: 0.000000035147387}
+  m_AnchoredPosition: {x: -0.022542864, y: 0.00000010743577}
   m_SizeDelta: {x: 800, y: 600}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!222 &715595639
@@ -16180,7 +16180,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1241096879
 Transform:
   m_ObjectHideFlags: 0
@@ -17138,10 +17138,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   startPosition: {x: -10.4, y: 1.157, z: -5.789}
   movingSound: {fileID: 8300000, guid: 226cfb92803f741cb885f2378a87836e, type: 3}
-  movingSoundVolume: 0.06
+  movingSoundVolume: 0.05
   deathSound: {fileID: 8300000, guid: 6c18d94a24ac24642b140e2ef3f91fe5, type: 3}
   deathSoundVolume: 0.25
-  speed: 0.05
+  speed: 1.2
   lifes: 3
 --- !u!143 &1280506507
 CharacterController:
@@ -18134,7 +18134,7 @@ MonoBehaviour:
   electronicDisplayStabilization: 0
   autoUntiltHead: 1
   UseUnityRemoteInput: 0
-  screenSize: 0
+  screenSize: 8
   deviceType: 0
   stereoScreenScale: 1
 --- !u!4 &1370597028
@@ -18991,7 +18991,7 @@ MonoBehaviour:
   scatterCorner: {x: -21, y: 0, z: 0}
   initialNextPosition: {x: -10.3, y: 0, z: -14.53}
   pelletsBeforeStart: 80
-  speed: 2.8
+  speed: 0.8
   frightenedSpeed: 0.5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
@@ -19414,6 +19414,14 @@ Prefab:
       propertyPath: deathSound
       value: 
       objectReference: {fileID: 8300000, guid: 4dd1d11aa009c4882b87cc95428c4b56, type: 3}
+    - target: {fileID: 11492732, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: speed
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 14328844, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: m_StepOffset
+      value: 0.3
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
   m_IsPrefabParent: 0
@@ -22783,7 +22791,7 @@ MonoBehaviour:
   scatterCorner: {x: -21, y: 0, z: 0}
   initialNextPosition: {x: -10.3, y: 0, z: -14.53}
   pelletsBeforeStart: 30
-  speed: 2.8
+  speed: 0.8
   frightenedSpeed: 0.5
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
