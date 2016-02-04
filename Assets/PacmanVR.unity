@@ -5111,7 +5111,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: -10.3, y: 0, z: -12.51}
-  movingSound: {fileID: 8300000, guid: d0ccd8cf0ee3b4eccb1964863497eb4f, type: 3}
+  movingSound: {fileID: 8300000, guid: d5b2a52df4a274a3390a32830319b148, type: 3}
   movingSoundVolume: 1
   deathSound: {fileID: 8300000, guid: 4dd1d11aa009c4882b87cc95428c4b56, type: 3}
   deathSoundVolume: 1.5
@@ -5124,6 +5124,7 @@ MonoBehaviour:
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}
+  frightenedSound: {fileID: 8300000, guid: c666bb56d825f4b4f9f74aada43f2284, type: 3}
   targetPositionOffset: 3
 --- !u!143 &385252271
 CharacterController:
@@ -18983,7 +18984,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: -11.65, y: 0, z: -12.51}
-  movingSound: {fileID: 8300000, guid: d0ccd8cf0ee3b4eccb1964863497eb4f, type: 3}
+  movingSound: {fileID: 8300000, guid: d5b2a52df4a274a3390a32830319b148, type: 3}
   movingSoundVolume: 1
   deathSound: {fileID: 8300000, guid: 4dd1d11aa009c4882b87cc95428c4b56, type: 3}
   deathSoundVolume: 1.5
@@ -18996,6 +18997,7 @@ MonoBehaviour:
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}
+  frightenedSound: {fileID: 8300000, guid: c666bb56d825f4b4f9f74aada43f2284, type: 3}
   distanceThreshold: 6
 --- !u!143 &1427380013
 CharacterController:
@@ -19409,7 +19411,7 @@ Prefab:
     - target: {fileID: 11492732, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
       propertyPath: movingSound
       value: 
-      objectReference: {fileID: 8300000, guid: d0ccd8cf0ee3b4eccb1964863497eb4f, type: 3}
+      objectReference: {fileID: 8300000, guid: d5b2a52df4a274a3390a32830319b148, type: 3}
     - target: {fileID: 11492732, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
       propertyPath: deathSound
       value: 
@@ -19422,6 +19424,10 @@ Prefab:
       propertyPath: m_StepOffset
       value: 0.3
       objectReference: {fileID: 0}
+    - target: {fileID: 11492732, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
+      propertyPath: frightenedSound
+      value: 
+      objectReference: {fileID: 8300000, guid: c666bb56d825f4b4f9f74aada43f2284, type: 3}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: a14f5a790340b4e76a225c56587facbc, type: 2}
   m_IsPrefabParent: 0
@@ -22783,7 +22789,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   startPosition: {x: -8.97, y: 0, z: -12.51}
-  movingSound: {fileID: 8300000, guid: d0ccd8cf0ee3b4eccb1964863497eb4f, type: 3}
+  movingSound: {fileID: 8300000, guid: d5b2a52df4a274a3390a32830319b148, type: 3}
   movingSoundVolume: 1
   deathSound: {fileID: 8300000, guid: 4dd1d11aa009c4882b87cc95428c4b56, type: 3}
   deathSoundVolume: 1.5
@@ -22796,6 +22802,7 @@ MonoBehaviour:
   intersectionOffset: 1.5
   frightenedBodyMaterial: {fileID: 2100000, guid: 72887f7d3c8da439b924f3b441d5a634,
     type: 2}
+  frightenedSound: {fileID: 8300000, guid: c666bb56d825f4b4f9f74aada43f2284, type: 3}
   targetPositionOffset: 1.5
 --- !u!136 &1709109348
 CapsuleCollider:

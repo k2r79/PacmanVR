@@ -24,6 +24,8 @@ public abstract class GhostController : PacmanCharacterController {
 	protected Material baseBodyMaterial;
 	public Material frightenedBodyMaterial;
 
+	public AudioClip frightenedSound;
+
 	// Use this for initialization
 	void Start () {
 		pacman = GameObject.Find("Pacman");
@@ -46,7 +48,9 @@ public abstract class GhostController : PacmanCharacterController {
 	// Update is called once per frame
 	void Update () {
 		if (GameController.eatenPellets >= pelletsBeforeStart && !GameController.mode.Equals(GameController.GameMode.Pause)) {
-			if (!audioSource.isPlaying) {
+			if (!audioSource.isPlaying  || audioSource.clip == frightenedSound) {
+				audioSource.clip = movingSound;
+				audioSource.loop = true;
 				audioSource.volume = movingSoundVolume;
 				audioSource.Play ();
 			}
@@ -70,6 +74,12 @@ public abstract class GhostController : PacmanCharacterController {
 	}
 
 	void Blink() {
+		if (!audioSource.isPlaying || audioSource.clip == movingSound) {
+			audioSource.clip = frightenedSound;
+			audioSource.loop = true;
+			audioSource.Play ();
+		}
+
 		bodyRenderer.material = frightenedBodyMaterial;
 	}
 
